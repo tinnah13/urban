@@ -1,0 +1,41 @@
+﻿# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+*.egg-info/
+.pytest_cache/
+*.pyc
+
+# Environment
+.env
+*.env.local
+
+# Data — DO NOT COMMIT (too large for GitHub)
+data/*.csv
+data/*.parquet
+data/*.zip
+data/taxi_zones/
+!data/taxi_zone_lookup.csv
+
+# Database — DO NOT COMMIT (binary + huge dump)
+database/*.db
+database/*.db-shm
+database/*.db-wal
+database/dump.sql
+
+# CodeVibe extension binary
+*.vsix
+
+# OS / IDE
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.log
+logs/
+
+# But DO commit CodeVibe reports
+!codevibe-reports/*.report.json

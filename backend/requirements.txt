@@ -1,0 +1,6 @@
+﻿flask
+flask-cors
+pandas
+pyarrow
+sqlalchemy
+python-dotenv
