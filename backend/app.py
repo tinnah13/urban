@@ -3,6 +3,7 @@
 # aggregated NYC yello-taxi data from a SQlite database.
 # All queries go through SQAlchemy Core with parameterized 
 #statements to prevent SQL injection.
+# Flask API - exposes /api/* endpoints
 
 import os
 import sys

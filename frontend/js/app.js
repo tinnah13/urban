@@ -1,4 +1,6 @@
-﻿let chartHourly, chartBorough, chartZones, chartAirport;
+﻿// Dashboard controller
+
+let chartHourly, chartBorough, chartZones, chartAirport;
 
 // ---------- KPIs ----------
 async function loadSummary() {

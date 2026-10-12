@@ -15,6 +15,7 @@ Usage:
 Output:
     database/urban_mobility.db    (SQLite, ready to query)
 """
+# ETL pipeline - load - clean - features- store
 
 import os
 import sys
@@ -538,7 +539,7 @@ def log_pipeline_version():
     print("Urban Mobility Explore  - ETL pipeline v1.0")
     print("python 3.12 | pandas| pyarrow | SQlite")
     print("=" * 60)
-    
+
 
 def main() -> int:
     t0 = time.time()

@@ -34,6 +34,7 @@ COMPLEXITY:
 #  - 3.0x = "extreme outlier" boundary
 # We default to 1.5x for sensitivity.
 # ============================================================================
+# IQR-based anomaly detector
 
 from typing import List, Dict, Tuple
 

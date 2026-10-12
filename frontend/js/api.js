@@ -10,6 +10,8 @@
 // Design decision: all data is fetched client-side via /api/* so the
 // dasboard can be served from any stastic host without a build step.
 // ========================================================================
+
+// Fetch wrapper for /api/* endpoints
 const API_BASE = "/api"
 
 const api = {
