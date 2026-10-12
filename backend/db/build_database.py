@@ -515,6 +515,31 @@ def insert_trips(conn, df: pd.DataFrame) -> None:
 # ============================================================================
 # MAIN
 # ============================================================================
+# ----------------------------------------------------------------------------
+# Main entry point for the ETL pipeline.
+#
+# Stages:
+#   1. Locate the parquet or CSV trip files.
+#   2. Load the taxi_zone_lookup.csv dimension.
+#   3. Read trips (100k-row chunks handled by pandas).
+#   4. Clean: duplicated, nulls, temporarl, distance, fare, pax.
+#   5. Engineer: speed, tip %, fare per mile. airport/cross-borough.
+#   6. Create schema, seed dimensions, build dim_time.
+#   7. Insert trips in 100k batcheds with FK validation.
+#   8. print cleaning report for the technical documentation.
+# ----------------------------------------------------------------------------
+
+def log_pipeline_version():
+    """
+    prints the pipeline version at startup.
+    Helps track which run produced which database snapshot.
+    """
+    print("=" * 60)
+    print("Urban Mobility Explore  - ETL pipeline v1.0")
+    print("python 3.12 | pandas| pyarrow | SQlite")
+    print("=" * 60)
+    
+
 def main() -> int:
     t0 = time.time()
 

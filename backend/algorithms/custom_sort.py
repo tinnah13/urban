@@ -20,6 +20,28 @@ WHY MERGE SORT?
   - Guaranteed O(n log n) — no worst-case degradation like quicksort
   - Easier to reason about for a report/paper
 """
+# =============================================================================
+# Implementation Notes
+# ============================================================================
+# this module implements merge sort from first principles to satisfy the
+# assignment's requirment of no built-in sorting functions.
+#
+# Why merge sort?
+#   - stable: ties preserve original order, which matters when chaining multiple sort criteria.
+#   - predictable: 0(n log n) in best, average, and worst cases.
+#   - parallelizable: left and right halves can sort independently.
+#
+# Why NOT quicksort?
+#   - wost case 0(n^2) on already-sorted input.
+#   - Not stable without extra bookkeeping.
+#
+# Why the bounded heap for top-k?
+#   - When K<< n, a full sort wastes work. We only need the K largest.
+#   - Time drops from 0(n log n) to 0(n log k).
+#   - Space drops from 0(n) to 0(k).
+# ============================================================================
+
+
 
 from typing import List, Dict, Any
 
@@ -191,3 +213,16 @@ For 265 zones and K=10:
   Top-K     = 265 · log(10)       ≈   880 operations
   → ~60% fewer comparisons
 """
+
+def describe_algorithm():
+    """
+    Returns a short human- readable description of the algorithm.
+    used by the API's  /api/alorithm-info endpoints.
+    """
+    return {
+        "name": "merge_sort_with_bounded_heap",
+        "time": "0(n log K)",
+        "space": "0(K)",
+        "stable": True,
+        "library_free": True,
+    }

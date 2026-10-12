@@ -1,8 +1,8 @@
-﻿"""
-Urban Mobility Explorer — Flask API
-====================================
-Serves aggregated NYC taxi analytics from SQLite.
-"""
+﻿# Urban Mobility Explorer - Flask Api
+# This module exposes 9 Rest endpoints that serve
+# aggregated NYC yello-taxi data from a SQlite database.
+# All queries go through SQAlchemy Core with parameterized 
+#statements to prevent SQL injection.
 
 import os
 import sys
@@ -249,6 +249,32 @@ def insights():
         "peak_hour": dict(peak._mapping) if peak else None,
         "airport": [dict(r._mapping) for r in airport],
         "cross_borough": [dict(r._mapping) for r in cb],
+    })
+
+@app.route("/api/ping")
+def ping():
+    """
+    lightweight liveness endpoint.
+    used by load balancers and uptime monitors.
+    returns 200 with pong payload when the service is up.
+    """
+    from datetime import datetime
+    return jsonify({
+        "pong": True,
+        "service": "urban-mobility-explorer",
+        "ts": datetime.utcnow().isoformat(),
+    })
+
+@app.route("/api/version")
+def version():
+    """
+    Returns the current API version.
+    Useful for clients to detect breaking changes.
+    """
+    return jsonify({
+        "version": "1.0.0"
+        "dataset": "NYC yellow taxi 2019-01"
+        "records": 7434709
     })
 
 

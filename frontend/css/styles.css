@@ -1,4 +1,15 @@
-﻿* { box-sizing: border-box; margin: 0; padding: 0; }
+﻿/*
+   urban Mobility Explore - stylesheet
+   Design principle:
+     * Responsive CSS Grid for KPI an dchart sections.
+     * Neutral background with a saturated accent for interactive elements.
+     * Accessible contrast ratios
+
+*/
+
+
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
 body {
   font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   background: #f5f6fa;

@@ -1,4 +1,18 @@
-﻿-- Schema
+﻿-- ==============================================================================
+-- NYC Yellow taxi 
+-- ------------------------------------------------------------------------------
+-- Design rationale:
+--   * 5 dimensions isolate low-cardinality reference data.
+--   * dim_time is a standard star-schema pattern that lets us precompute
+--     hour-of-day, day-of-week, weekend flags once instead of at query time.
+--   * trps is the fact table and stores engineeres columns as materialised
+--     attributes to avoid recomputation on every read.
+--   * Foreign keys enforce referential integrity. The ETL pipeline
+--     pre-filters records that would violated that violate them.
+-- ==============================================================================
+
+
+-- Schema
 -- ============================================================================
 -- Urban Mobility Explorer — NYC Yellow Taxi Database Schema
 -- ============================================================================

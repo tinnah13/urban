@@ -20,6 +20,20 @@ COMPLEXITY:
   Time:  O(n log n) — dominated by the sort
   Space: O(n)      — sorted copy + result lists
 """
+# ============================================================================
+# Why IQR?
+# ============================================================================
+# The Interquartile Range Method is robust to extreme outliers because it
+# relies on percentiles rather than mean and standard deviation.
+#
+# Example: if 10 fares in a batch  are $500,000 each (data entry erros),
+# the mean and std-dev explode, but Q1 and Q3 barely move.
+#
+# Interpretation of the 1.5 * IQR threshold:
+#  - 1.5x = standard "outlier" boundary (Tukry's original paper)
+#  - 3.0x = "extreme outlier" boundary
+# We default to 1.5x for sensitivity.
+# ============================================================================
 
 from typing import List, Dict, Tuple
 
@@ -140,3 +154,20 @@ def detect_anomalies_iqr(
             anomalies.append(a)
 
     return normal, anomalies
+
+def anomaly_summary(trips, field="total_amount"):
+    """
+    Returns a compact statistical summary of anomaly detection.
+    Useful for surfacing on a dashboard badge.
+
+    """
+    normal, bad = detect_anomalies_iqr(trips, field=field)
+    total = len(trips)
+    return {
+        "field": field,
+        "total_scanned": total,
+        "normal_count": len(normal),
+        "anomaly_count": len(bad),
+        "anomaly_rate_pct": round(100.0 * len(bad) / total, 2) if total else 0,
+
+    }
