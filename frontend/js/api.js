@@ -10,3 +10,14 @@
 // Design decision: all data is fetched client-side via /api/* so the
 // dasboard can be served from any stastic host without a build step.
 // ========================================================================
+const API_BASE = "/api"
+
+const api = {
+    get: async function (path) {
+        const res = await fetch(API_BASE + path)
+        if (!res.ok) {
+            throw new Error("API" + path + "returned" + res.status);
+        }
+        return res.json();
+    },
+};

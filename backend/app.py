@@ -272,9 +272,9 @@ def version():
     Useful for clients to detect breaking changes.
     """
     return jsonify({
-        "version": "1.0.0"
-        "dataset": "NYC yellow taxi 2019-01"
-        "records": 7434709
+        "version": "1.0.0",
+        "dataset": "NYC yellow taxi 2019-01",
+        "records": 7434709,
     })
 
 
